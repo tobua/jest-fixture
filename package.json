@@ -1,0 +1,53 @@
+{
+  "name": "jest-fixture",
+  "description": "Helpers to create file based fixtures for use with jest.",
+  "version": "1.0.0",
+  "repository": "github:tobua/jest-fixture",
+  "license": "MIT",
+  "author": "Matthias Giger",
+  "scripts": {
+    "test": "padua test",
+    "start": "padua watch",
+    "build": "padua build"
+  },
+  "padua": {
+    "esbuild": {
+      "platform": "node",
+      "format": "esm"
+    }
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.5",
+    "rimraf": "^3.0.2"
+  },
+  "main": "dist/index.js",
+  "sideEffects": true,
+  "source": "index.ts",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "padua": "^0.3.0"
+  },
+  "prettier": "padua/configuration/.prettierrc.json",
+  "eslintConfig": {
+    "env": {
+      "jest": true
+    },
+    "extends": "./node_modules/padua/configuration/eslint.cjs"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "./tsconfig.json"
+      }
+    },
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
+  "engines": {
+    "node": ">= 14"
+  }
+}
