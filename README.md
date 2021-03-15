@@ -17,25 +17,25 @@ import { build } from '../my-build-plugin'
 const [fixturePath, setCwd] = environment('build')
 
 test('Build generates required files with modules.', async () => {
-    const { dist } = prepare([
-        file('index.js', "import 'imported.js'"),
-        file('imported.js', "console.log('Hello World!')")
-        packageJson('build', { type: "module" })
-    ])
+  const { dist } = prepare([
+    file('index.js', "import 'imported.js'"),
+    file('imported.js', "console.log('Hello World!')"),
+    packageJson('build', { type: 'module' }),
+  ])
 
-    await build()
+  await build()
 
-    const files = listFilesMatching('*.map.js', dist)
+  const files = listFilesMatching('*.js.map', dist)
 
-    // Source map file is generated.
-    expect(files.length).toEqual(1)
-    expect(files[0]).toEqual('index.map.js')
+  // Source map file is generated.
+  expect(files.length).toEqual(1)
+  expect(files[0]).toEqual('index.js.map')
 
-    const contents = contentsForFilesMatching('*.js', dist)
+  const contents = contentsForFilesMatching('*.js', dist)
 
-    // Contents of imported files included in generated file.
-    expect(contents.length).toBeGreaterThan(0)
-    expect(contents[0].name).toEqual('index.js')
-    expect(contents[0].contents).toContain('Hello World')
+  // Contents of imported files included in generated file.
+  expect(contents.length).toBeGreaterThan(0)
+  expect(contents[0].name).toEqual('index.js')
+  expect(contents[0].contents).toContain('Hello World')
 })
 ```

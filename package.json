@@ -20,6 +20,7 @@
     "fast-glob": "^3.2.5",
     "rimraf": "^3.0.2"
   },
+  "type": "module",
   "main": "dist/index.js",
   "sideEffects": true,
   "source": "index.ts",
@@ -28,7 +29,7 @@
     "dist"
   ],
   "devDependencies": {
-    "padua": "^0.3.0"
+    "padua": "^0.3.1"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {
