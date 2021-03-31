@@ -1,7 +1,7 @@
 {
   "name": "jest-fixture",
   "description": "Helpers to create file based fixtures for use with jest.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "github:tobua/jest-fixture",
   "license": "MIT",
   "author": "Matthias Giger",
