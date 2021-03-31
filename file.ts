@@ -1,4 +1,11 @@
-import { readFileSync, writeFileSync } from 'fs'
+import {
+  readFileSync,
+  writeFileSync,
+  unlinkSync,
+  existsSync,
+  rmdirSync,
+  lstatSync,
+} from 'fs'
 import { isAbsolute, join } from 'path'
 
 export const readFile = (name: string, options: { json?: boolean } = {}) => {
@@ -8,7 +15,7 @@ export const readFile = (name: string, options: { json?: boolean } = {}) => {
     path = join(process.cwd(), path)
   }
 
-  let content = readFileSync(path, 'utf8')
+  const content = readFileSync(path, 'utf8')
 
   if (options.json || /^.*\.json$/.test(path)) {
     return JSON.parse(content)
@@ -39,4 +46,20 @@ export const writeFile = (
   }
 
   writeFileSync(path, writeContent)
+}
+
+export const removeFile = (name: string) => {
+  let path = name
+
+  if (!isAbsolute(path)) {
+    path = join(process.cwd(), path)
+  }
+
+  if (existsSync(path)) {
+    if (lstatSync(path).isDirectory()) {
+      rmdirSync(path, { recursive: true })
+    } else {
+      unlinkSync(path)
+    }
+  }
 }

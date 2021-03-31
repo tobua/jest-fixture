@@ -29,7 +29,7 @@
     "dist"
   ],
   "devDependencies": {
-    "padua": "^0.3.1"
+    "padua": "^0.3.5"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {

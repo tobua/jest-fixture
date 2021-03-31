@@ -9,6 +9,7 @@ import {
   file,
   listFilesMatching,
   contentsForFilesMatching,
+  wait,
 } from '../index'
 
 const initialPath = process.cwd()
@@ -103,4 +104,13 @@ test('Prepare can create nested files.', () => {
       contents: '',
     },
   ])
+})
+
+test('Timer elapses time passed.', async () => {
+  const before = performance.now()
+  await wait(1)
+  const after = performance.now()
+
+  expect(after - before).toBeGreaterThan(1000)
+  expect(after - before).toBeLessThan(1100)
 })
