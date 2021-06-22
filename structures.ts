@@ -14,7 +14,7 @@ export const json = (name: string, contents: Object) =>
   ({
     name,
     json: true,
-    contents: contents,
+    contents,
   } as File)
 
 export const packageJson = (name: string, others = {}) =>

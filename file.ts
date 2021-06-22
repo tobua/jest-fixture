@@ -17,7 +17,7 @@ export const readFile = (name: string, options: { json?: boolean } = {}) => {
 
   const content = readFileSync(path, 'utf8')
 
-  if (options.json || /^.*\.json$/.test(path)) {
+  if (options.json || (options.json !== false && /^.*\.json$/.test(path))) {
     return JSON.parse(content)
   }
 
@@ -27,7 +27,7 @@ export const readFile = (name: string, options: { json?: boolean } = {}) => {
 export const writeFile = (
   name: string,
   content: string | Object = '',
-  options: { json?: boolean } = {}
+  options: { json?: boolean; ensureNewLine?: boolean } = {}
 ) => {
   let path = name
 
@@ -43,6 +43,14 @@ export const writeFile = (
 
   if (typeof content === 'string') {
     writeContent = content
+  }
+
+  if (
+    options.ensureNewLine !== false &&
+    !writeContent.endsWith('\n') &&
+    writeContent.length > 0
+  ) {
+    writeContent += '\n'
   }
 
   writeFileSync(path, writeContent)

@@ -39,3 +39,38 @@ test('Build generates required files with modules.', async () => {
   expect(contents[0].contents).toContain('Hello World')
 })
 ```
+
+## `readFile` and `writeFile`
+
+```js
+import { readFile, writeFile } from 'jest-fixture'
+
+const fileContentsAsString = readFile('index.js')
+const { name, version } = readFile('package.json')
+
+// With options:
+const { presets } = readFile('.babelrc', {
+  // Default false, or detected from .json extension.
+  json: true,
+})
+
+writeFile('index.js', `alert('Knock, knock. Who's there?')`)
+writeFile('package.json', {
+  name: 'my-app',
+  version: '1.0.0',
+})
+
+// With options:
+writeFile(
+  '.babelrc',
+  {
+    presets: ['@babel/preset-env'],
+  },
+  {
+    // Default false, or detected from .json extension.
+    json: true,
+    // Default true, will add newline if not present already.
+    ensureNewLine: false,
+  }
+)
+```

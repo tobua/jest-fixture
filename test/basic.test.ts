@@ -1,5 +1,6 @@
 import { existsSync } from 'fs'
 import { join } from 'path'
+import { performance } from 'perf_hooks'
 import {
   environment,
   prepare,
@@ -14,7 +15,7 @@ import {
 
 const initialPath = process.cwd()
 
-const environmentName = 'jest-fixture'
+const environmentName = 'basic'
 
 const [fixturePath, setCwd] = environment(environmentName)
 
@@ -76,7 +77,7 @@ test('Prepare creates files listed.', () => {
   expect(contents).toEqual([
     {
       name: 'index.js',
-      contents: 'JavaScript',
+      contents: 'JavaScript\n',
     },
     {
       name: 'index.json',
