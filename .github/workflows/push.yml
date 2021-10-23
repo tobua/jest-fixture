@@ -1,4 +1,4 @@
-name: test
+name: push
 
 on:
   push:
@@ -10,10 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - name: Build 🚧
-        run: npm run build
       - name: Test 🧪
         run: npm test
+  release:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: Build 🚧
+        run: npm run build
       - uses: tobua/release-npm-action@v1
         with:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
