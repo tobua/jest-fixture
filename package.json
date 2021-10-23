@@ -1,7 +1,7 @@
 {
   "name": "jest-fixture",
   "description": "Helpers to create file based fixtures for use with jest.",
-  "version": "2.0.0",
+  "version": "0.0.0-development",
   "repository": "github:tobua/jest-fixture",
   "license": "MIT",
   "author": "Matthias Giger",
@@ -30,6 +30,10 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "jest",
+    "fixture"
   ],
   "devDependencies": {
     "padua": "^0.3.14"

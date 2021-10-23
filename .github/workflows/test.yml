@@ -3,8 +3,6 @@ name: test
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   test:
@@ -12,5 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+      - name: Build 🚧
+        run: npm run build
       - name: Test 🧪
         run: npm test
+      - uses: tobua/release-npm-action@v1
+        with:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
