@@ -18,6 +18,7 @@ export const environment = (testSuiteName: string) => {
   const setCwd = (_path: string) => currentDirectorySpy.mockReturnValue(_path)
   const fixturePath = join(CWD, 'test/fixture', testSuiteName)
 
+  // Lifecycle methods added by the user will also run, multiple can be registered.
   beforeEach(() => {
     setCwd(fixturePath)
   })

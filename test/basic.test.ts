@@ -115,3 +115,11 @@ test('Timer elapses time passed.', async () => {
   expect(after - before).toBeGreaterThan(1000)
   expect(after - before).toBeLessThan(1100)
 })
+
+test('Also lists dotfiles.', () => {
+  prepare([file('index.js', 'JavaScript'), file('.babelrc', 'Nah')])
+
+  const files = listFilesMatching('*', fixturePath)
+
+  expect(files).toEqual(['.babelrc', 'index.js'])
+})

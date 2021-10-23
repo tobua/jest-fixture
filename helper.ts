@@ -8,6 +8,7 @@ export const wait = (seconds: number) =>
 export const listFilesMatching = (matcher: string, folder = process.cwd()) =>
   globSync([matcher], {
     cwd: folder,
+    dot: true,
   }) as string[]
 
 export const contentsForFilesMatching = (

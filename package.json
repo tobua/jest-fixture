@@ -6,9 +6,9 @@
   "license": "MIT",
   "author": "Matthias Giger",
   "scripts": {
-    "test": "padua test",
+    "build": "padua build",
     "start": "padua watch",
-    "build": "padua build"
+    "test": "padua test"
   },
   "padua": {
     "esbuild": {
@@ -17,11 +17,14 @@
     }
   },
   "dependencies": {
-    "fast-glob": "^3.2.5",
+    "fast-glob": "^3.2.7",
     "rimraf": "^3.0.2"
   },
   "type": "module",
   "main": "dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "sideEffects": true,
   "source": "index.ts",
   "types": "dist/index.d.ts",
@@ -29,7 +32,7 @@
     "dist"
   ],
   "devDependencies": {
-    "padua": "^0.3.7"
+    "padua": "^0.3.14"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {
