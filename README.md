@@ -84,10 +84,7 @@ import { join } from 'path'
 import { listFilesMatching, contentsForFilesMatching } from 'jest-fixture'
 
 const files = listFilesMatching('*.js')
-const sourceMapFilesInDist = listFilesMatching(
-  '*.map.js',
-  join(process.cwd(), 'dist')
-)
+const sourceMapFilesInDist = listFilesMatching('*.map.js', join(process.cwd(), 'dist'))
 
 // files === ['index.js', 'components.js']
 
@@ -153,4 +150,19 @@ const packageJson = packageJson('my-plugin', {
 })
 
 prepare([javaScriptFile, jsonFiles, packageJson])
+```
+
+## vitest
+
+Use the following test setup code to polyfill jest globals with matching vitest globals.
+
+```js
+import { beforeEach, afterEach, vi } from 'vitest'
+
+global.jest = {
+  spyOn: vi.spyOn,
+}
+
+global.beforeEach = beforeEach
+global.afterEach = afterEach
 ```

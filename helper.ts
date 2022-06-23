@@ -1,12 +1,12 @@
 import { join } from 'path'
-import { sync as globSync } from 'fast-glob'
+import fastGlob from 'fast-glob'
 import { readFile } from './file'
 
 export const wait = (seconds: number) =>
   new Promise<void>((done) => setTimeout(() => done(), seconds * 1000))
 
 export const listFilesMatching = (matcher: string, folder = process.cwd()) =>
-  globSync([matcher], {
+  fastGlob.sync([matcher], {
     cwd: folder,
     dot: true,
   }) as string[]

@@ -17,15 +17,15 @@
     }
   },
   "dependencies": {
-    "fast-glob": "^3.2.7",
+    "fast-glob": "^3.2.11",
     "rimraf": "^3.0.2"
   },
   "type": "module",
+  "sideEffects": true,
   "main": "dist/index.js",
   "exports": {
     "default": "./dist/index.js"
   },
-  "sideEffects": true,
   "source": "index.ts",
   "types": "dist/index.d.ts",
   "files": [
@@ -36,7 +36,7 @@
     "fixture"
   ],
   "devDependencies": {
-    "padua": "^0.3.14"
+    "padua": "^0.5.6"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {
