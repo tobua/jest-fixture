@@ -5,8 +5,9 @@ import {
   existsSync,
   rmdirSync,
   lstatSync,
+  mkdirSync,
 } from 'fs'
-import { isAbsolute, join } from 'path'
+import { dirname, isAbsolute, join } from 'path'
 
 export const readFile = (name: string, options: { json?: boolean } = {}) => {
   let path = name
@@ -45,12 +46,14 @@ export const writeFile = (
     writeContent = content
   }
 
-  if (
-    options.ensureNewLine !== false &&
-    !writeContent.endsWith('\n') &&
-    writeContent.length > 0
-  ) {
+  if (options.ensureNewLine !== false && !writeContent.endsWith('\n') && writeContent.length > 0) {
     writeContent += '\n'
+  }
+
+  const directory = dirname(path)
+
+  if (!existsSync(directory)) {
+    mkdirSync(directory, { recursive: true })
   }
 
   writeFileSync(path, writeContent)
