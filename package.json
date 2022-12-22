@@ -19,11 +19,7 @@
       "external": [
         "vitest"
       ]
-    },
-    "entry": [
-      "index.ts",
-      "vitest.ts"
-    ]
+    }
   },
   "dependencies": {
     "fast-glob": "^3.2.12",
@@ -33,8 +29,7 @@
   "sideEffects": true,
   "main": "dist/index.js",
   "exports": {
-    ".": "./dist/index.js",
-    "./vitest": "./dist/vitest.js"
+    ".": "./dist/index.js"
   },
   "source": "index.ts",
   "types": "dist/index.d.ts",

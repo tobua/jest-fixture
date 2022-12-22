@@ -1,8 +1,9 @@
 import { existsSync } from 'fs'
-import { test, expect } from 'vitest'
+import { test, expect, beforeEach, afterEach, vi } from 'vitest'
 import { join } from 'path'
-import '../vitest'
-import { environment, prepare, readFile, writeFile } from '../index'
+import { registerVitest, environment, prepare, readFile, writeFile } from '../index'
+
+registerVitest(beforeEach, afterEach, vi)
 
 const initialPath = process.cwd()
 const environmentName = 'vitest'

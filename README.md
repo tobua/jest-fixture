@@ -154,11 +154,13 @@ prepare([javaScriptFile, jsonFiles, packageJson])
 
 ## vitest
 
-Import this polyfill to support vitest.
+Use the `registerVitest` polyfill method to use with vitest.
 
 ```js
-import 'jest-fixture/vitest'
-import { file, json, packageJson, prepare } from 'jest-fixture'
+import { beforeEach, afterEach, vi } from 'vitest'
+import { registerVitest } from 'jest-fixture'
+
+registerVitest(beforeEach, afterEach, vi)
 ```
 
 **Or**, use the following test setup code to polyfill jest globals with matching vitest globals.
