@@ -14,8 +14,11 @@ export const prepare = (fixture: File[], path = process.cwd()) => {
 }
 
 export const environment = (testSuiteName: string) => {
-  const currentDirectorySpy = jest.spyOn(process, 'cwd')
-  const setCwd = (_path: string) => currentDirectorySpy.mockReturnValue(_path)
+  let currentDirectorySpy = jest.spyOn(process, 'cwd')
+  const setCwd = (path: string) => {
+    currentDirectorySpy = jest.spyOn(process, 'cwd')
+    currentDirectorySpy.mockReturnValue(path)
+  }
   const fixturePath = join(CWD, 'test/fixture', testSuiteName)
 
   // Lifecycle methods added by the user will also run, multiple can be registered.
@@ -25,6 +28,7 @@ export const environment = (testSuiteName: string) => {
 
   afterEach(() => {
     remove(fixturePath)
+    currentDirectorySpy.mockRestore()
   })
 
   return [fixturePath, setCwd] as [string, (path: string) => void]

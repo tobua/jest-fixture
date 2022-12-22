@@ -20,9 +20,7 @@ const environmentName = 'basic'
 const [fixturePath, setCwd] = environment(environmentName)
 
 test('Correct fixture path.', () => {
-  expect(join(initialPath, `test/fixture/${environmentName}`)).toEqual(
-    fixturePath
-  )
+  expect(join(initialPath, `test/fixture/${environmentName}`)).toEqual(fixturePath)
   // process.cwd() will point to fixture path.
   expect(process.cwd()).toEqual(fixturePath)
 
@@ -63,10 +61,7 @@ test('Helpers for reading and writing files work properly.', () => {
 })
 
 test('Prepare creates files listed.', () => {
-  prepare([
-    file('index.js', 'JavaScript'),
-    json('index.json', { type: 'JSON' }),
-  ])
+  prepare([file('index.js', 'JavaScript'), json('index.json', { type: 'JSON' })])
 
   const files = listFilesMatching('*', fixturePath)
 

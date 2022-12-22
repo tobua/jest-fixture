@@ -9,15 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - name: Test 🧪
         run: npm test
+      - name: Vitest 🧪
+        run: npm run vitest
   release:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
+      - run: npm install --legacy-peer-deps
       - name: Build 🚧
         run: npm run build
       - uses: tobua/release-npm-action@v1

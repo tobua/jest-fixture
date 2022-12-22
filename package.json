@@ -8,23 +8,33 @@
   "scripts": {
     "build": "padua build",
     "start": "padua watch",
-    "test": "padua test"
+    "test": "padua test",
+    "vitest": "vitest run --dir vitest"
   },
   "padua": {
     "esbuild": {
+      "target": "node16",
       "platform": "node",
-      "format": "esm"
-    }
+      "format": "esm",
+      "external": [
+        "vitest"
+      ]
+    },
+    "entry": [
+      "index.ts",
+      "vitest.ts"
+    ]
   },
   "dependencies": {
-    "fast-glob": "^3.2.11",
+    "fast-glob": "^3.2.12",
     "rimraf": "^3.0.2"
   },
   "type": "module",
   "sideEffects": true,
   "main": "dist/index.js",
   "exports": {
-    "default": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./vitest": "./dist/vitest.js"
   },
   "source": "index.ts",
   "types": "dist/index.d.ts",
@@ -36,7 +46,8 @@
     "fixture"
   ],
   "devDependencies": {
-    "padua": "^0.5.6"
+    "padua": "^0.6.1",
+    "vitest": "^0.26.2"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {
@@ -51,6 +62,9 @@
         "tsconfig": "./tsconfig.json"
       }
     },
+    "testPathIgnorePatterns": [
+      "/vitest/"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
