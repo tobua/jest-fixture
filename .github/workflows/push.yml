@@ -7,8 +7,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: npm install --legacy-peer-deps
       - name: Test 🧪
         run: npm test
@@ -18,11 +21,11 @@ jobs:
     needs: [test]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: npm install --legacy-peer-deps
       - name: Build 🚧
         run: npm run build
-      - uses: tobua/release-npm-action@v1
+      - run: npm install -g npm@latest
+      - uses: tobua/release-npm-action@v2
         with:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

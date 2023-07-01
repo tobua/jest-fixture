@@ -22,17 +22,19 @@
     }
   },
   "dependencies": {
-    "fast-glob": "^3.2.12",
-    "rimraf": "^3.0.2"
+    "fast-glob": "^3.3.0"
   },
   "type": "module",
   "sideEffects": true,
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
-  "source": "index.ts",
-  "types": "dist/index.d.ts",
+  "source": "./index.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -41,8 +43,8 @@
     "fixture"
   ],
   "devDependencies": {
-    "padua": "^0.6.1",
-    "vitest": "^0.26.2"
+    "padua": "^2.0.0",
+    "vitest": "^0.32.2"
   },
   "prettier": "padua/configuration/.prettierrc.json",
   "eslintConfig": {
@@ -51,20 +53,10 @@
     },
     "extends": "./node_modules/padua/configuration/eslint.cjs"
   },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "./tsconfig.json"
-      }
-    },
-    "testPathIgnorePatterns": [
-      "/vitest/"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
+  "publishConfig": {
+    "provenance": true
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 16"
   }
 }

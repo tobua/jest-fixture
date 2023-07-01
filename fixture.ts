@@ -1,6 +1,5 @@
-import { copyFileSync, mkdirSync, existsSync } from 'fs'
+import { copyFileSync, mkdirSync, existsSync, rmSync } from 'fs'
 import { join, dirname } from 'path'
-import rimraf from 'rimraf'
 import { writeFile } from './file'
 import { File } from './structures'
 
@@ -10,7 +9,9 @@ const CWD = process.cwd()
 // Create file structure required to test the plugins.
 export const setup = (structure: File[], fixturePath: string) => {
   // Cleanup in case leftovers from previous runs exist.
-  rimraf.sync(fixturePath)
+  if (existsSync(fixturePath)) {
+    rmSync(fixturePath, { recursive: true })
+  }
 
   // Create test/fixture directory to put files.
   mkdirSync(fixturePath, { recursive: true })
@@ -35,5 +36,7 @@ export const setup = (structure: File[], fixturePath: string) => {
 
 // Remove test suites created during setup.
 export const remove = (fixturePath: string) => {
-  rimraf.sync(fixturePath)
+  if (existsSync(fixturePath)) {
+    rmSync(fixturePath, { recursive: true })
+  }
 }
