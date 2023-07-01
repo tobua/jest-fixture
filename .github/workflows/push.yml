@@ -7,9 +7,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
     steps:
       - uses: actions/checkout@v3
       - run: npm install --legacy-peer-deps
@@ -20,6 +17,9 @@ jobs:
   release:
     needs: [test]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - run: npm install --legacy-peer-deps
